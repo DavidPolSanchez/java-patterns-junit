@@ -1,6 +1,6 @@
 package com.example.behavioral.visitor;
 
-import com.example.behavioral.command.demo.visitor.*;
+import com.example.behavioral.visitor.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
