@@ -12,6 +12,6 @@ class FooterTest {
     void setContentTest() {
         Footer footer = new Footer("TEST_STRING", "TEST_STRING");
         footer.setContent(TEST_STRING);
-        assertEquals(footer.getContent(), TEST_STRING);
+        assertEquals(TEST_STRING, footer.getContent());
     }
 }

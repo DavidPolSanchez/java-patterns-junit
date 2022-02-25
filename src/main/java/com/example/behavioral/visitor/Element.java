@@ -4,7 +4,7 @@ abstract class Element {
 
     public String uuid;
 
-    public Element(String uuid) {
+    protected Element(String uuid) {
         this.uuid = uuid;
     }
 
