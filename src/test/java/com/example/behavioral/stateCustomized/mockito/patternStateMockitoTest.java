@@ -1,9 +1,6 @@
 package com.example.behavioral.stateCustomized.mockito;
 
-import com.example.behavioral.stateCustomized.Order;
-import com.example.behavioral.stateCustomized.OrderState;
-import com.example.behavioral.stateCustomized.ProcessingState;
-import com.example.behavioral.stateCustomized.Product;
+import com.example.behavioral.stateCustomized.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -15,8 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -71,8 +67,137 @@ class patternStateMockitoTest {
             assertEquals(1L,order1.getId());
             assertEquals(2022,order1.getDate().getYear());
             assertInstanceOf(ProcessingState.class,order1.getState());
-            verifyNoInteractions(state);
+            assertEquals(listProds,order1.getProducts());
         }
     }
+
+    @Nested
+    @DisplayName("Test sobre la clase ProcesingState")
+    class ProcessingStateTest {
+
+        ProcessingState processingState = new ProcessingState();
+
+        @Test
+        void nextTest() {
+            Order order = new Order();
+            order.setId(1L);
+            order.setDate(LocalDateTime.of(2022,02,24,19,59,00));
+            order.setState(processingState);
+
+            String responseExpected=String.format("Updating Order %d from %s to %s.",
+                    order.getId(),
+                    ProcessingState.class.getSimpleName(),
+                    ShippedState.class.getSimpleName()
+            );
+
+            String response=processingState.next(order);
+
+            assertTrue(responseExpected.compareTo(response)==0);
+
+        }
+
+        @Test
+        void previousTest() {
+            Order order = new Order();
+            order.setId(1L);
+            order.setDate(LocalDateTime.of(2022,02,24,19,59,00));
+            order.setState(processingState);
+
+            String responseExpected="Root state";
+
+            String response=processingState.previous(order);
+
+            assertTrue(responseExpected.compareTo(response)==0);
+
+        }
+    }
+
+    @Nested
+    @DisplayName("Test sobre la clase ProcesingState")
+    class ShippedStateTest {
+
+        ShippedState shippedState = new ShippedState();
+
+        @Test
+        void nextTest() {
+            Order order = new Order();
+            order.setId(1L);
+            order.setDate(LocalDateTime.of(2022,02,24,19,59,00));
+            order.setState(shippedState);
+
+            String responseExpected=String.format("Updating Order %d from %s to %s.",
+                    order.getId(),
+                    ShippedState.class.getSimpleName(),
+                    DeliveredState.class.getSimpleName()
+            );
+
+            String response=shippedState.next(order);
+
+            assertTrue(responseExpected.compareTo(response)==0);
+
+        }
+
+        @Test
+        void previousTest() {
+            Order order = new Order();
+            order.setId(1L);
+            order.setDate(LocalDateTime.of(2022,02,24,19,59,00));
+            order.setState(shippedState);
+
+            String responseExpected=String.format("Updating Order %d from %s to %s.",
+                    order.getId(),
+                    ShippedState.class.getSimpleName(),
+                    ProcessingState.class.getSimpleName()
+            );
+
+            String response=shippedState.previous(order);
+
+            assertTrue(responseExpected.compareTo(response)==0);
+
+        }
+    }
+
+
+    @Nested
+    @DisplayName("Test sobre la clase ProcesingState")
+    class DeliveredStateTest {
+
+        DeliveredState deliveredState = new DeliveredState();
+
+        @Test
+        void nextTest() {
+            Order order = new Order();
+            order.setId(1L);
+            order.setDate(LocalDateTime.of(2022,02,24,19,59,00));
+            order.setState(deliveredState);
+
+            String responseExpected="Order delivered, ends!";
+
+            String response=deliveredState.next(order);
+
+            assertTrue(responseExpected.compareTo(response)==0);
+
+        }
+
+        @Test
+        void previousTest() {
+            Order order = new Order();
+            order.setId(1L);
+            order.setDate(LocalDateTime.of(2022,02,24,19,59,00));
+            order.setState(deliveredState);
+
+            String responseExpected=String.format("Updating Order %d from %s to %s.",
+                    order.getId(),
+                    DeliveredState.class.getSimpleName(),
+                    ShippedState.class.getSimpleName()
+            );
+
+            String response=deliveredState.previous(order);
+
+            assertTrue(responseExpected.compareTo(response)==0);
+
+        }
+    }
+
 
 }
