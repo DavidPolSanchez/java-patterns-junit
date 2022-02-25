@@ -1,6 +1,5 @@
 package com.example.behavioral.visitor;
 
-import com.example.behavioral.command.demo.visitor.Footer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

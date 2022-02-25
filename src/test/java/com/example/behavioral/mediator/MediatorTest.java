@@ -1,9 +1,5 @@
 package com.example.behavioral.mediator;
 
-import com.example.behavioral.command.demo.mediator.AbstractUser;
-import com.example.behavioral.command.demo.mediator.ChatMediator;
-import com.example.behavioral.command.demo.mediator.Telegram;
-import com.example.behavioral.command.demo.mediator.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
