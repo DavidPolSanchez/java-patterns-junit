@@ -5,8 +5,8 @@ public class Product {
 	private Long id;
 	private String sku;
 
-	public Product(Long i, String sku) {
-		id=i;
-		sku=sku;
+	public Product(Long id, String sku) {
+		this.id=id;
+		this.sku=sku;
 	}
 }
