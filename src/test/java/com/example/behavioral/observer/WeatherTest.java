@@ -1,9 +1,5 @@
 package com.example.behavioral.observer;
 
-import com.example.behavioral.command.demo.observer.Computer;
-import com.example.behavioral.command.demo.observer.SmartPhone;
-import com.example.behavioral.command.demo.observer.Weather;
-import com.example.behavioral.command.demo.observer.WeatherType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

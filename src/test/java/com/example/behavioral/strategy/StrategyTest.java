@@ -1,9 +1,5 @@
 package com.example.behavioral.strategy;
 
-import com.example.behavioral.command.demo.strategy.CreditCardStrategy;
-import com.example.behavioral.command.demo.strategy.PayPalStrategy;
-import com.example.behavioral.command.demo.strategy.Product;
-import com.example.behavioral.command.demo.strategy.ShopCart;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
